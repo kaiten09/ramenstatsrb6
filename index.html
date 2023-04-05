@@ -33,7 +33,7 @@
 		<label for="age">Edad:</label>
 		<input type="number" id="age" name="age"><br>
 
-		<input type="submit" value="Enviar" onclick="generarTablaYgraficos()"><br>event.preventDefault();
+		<input type="button" value="Enviar" onclick="generarTablaYgraficos()"><br>
 
 	</form>
 
@@ -70,15 +70,5 @@
 			        datasets: [{
 			            label: 'Datos personales',
 			            backgroundColor: 'rgb(255, 99, 132)',
-			            borderColor: 'rgb(255, 99, 132)',
-			            data: [nombre.length, apellido.length, edad],
-			        }]
-			    },
+			            borderColor:
 
-			    options: {}
-			});
-		}
-	</script>
-
-</body>
-</html>
