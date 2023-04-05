@@ -50,17 +50,18 @@
 	<script>
 		// Crear el gráfico una sola vez al cargar la página
 		var ctx = document.getElementById('grafico').getContext('2d');
-		var chart = new Chart(ctx, {
-		    type: 'bar',
-		    data: {
-		        labels: ['Nombre', 'Apellido', 'Edad'],
-		        datasets: [{
-		            label: 'Datos personales',
-		            backgroundColor: 'rgb(255, 99, 132)',
-		            borderColor: 'rgb(255, 99, 132)',
-		            data: [0, 0, 0],
-		        }]
-		    },
+  		var chart = new Chart(ctx, {
+    			type: 'bar',
+    			data: {
+				labels: ['Nombre', 'Apellido', 'Edad'],
+				datasets: [{
+				    label: 'Datos personales',
+				    backgroundColor: 'rgb(255, 99, 132)',
+				    borderColor: 'rgb(255, 99, 132)',
+				    data: [nombre.length, apellido.length, edad],
+				}]
+			    },
+
 		    options: {}
 		});
 
