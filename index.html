@@ -1,24 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mi sitio web</title>
+	<title>Formulario con tabla y gráficos</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+		tr:nth-child(even) {background-color: #f2f2f2;}
+	</style>
 </head>
 <body>
-  <h1>Bienvenido a mi sitio web</h1>
-  <p>Este es mi primer sitio web.</p>
+
+	<h1>Formulario con tabla y gráficos</h1>
+
+	<form>
+		<label for="fname">Nombre:</label>
+		<input type="text" id="fname" name="fname"><br>
+
+		<label for="lname">Apellido:</label>
+		<input type="text" id="lname" name="lname"><br>
+
+		<label for="age">Edad:</label>
+		<input type="number" id="age" name="age"><br>
+
+		<input type="submit" value="Enviar" onclick="generarTablaYgraficos()"><br>
+	</form>
+
+	<table id="tabla">
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Edad</th>
+		</tr>
+	</table>
+
+	<canvas id="grafico"></canvas>
+
+	<script>
+		function generarTablaYgraficos() {
+			var nombre = document.getElementById("fname").value;
+			var apellido = document.getElementById("lname").value;
+			var edad = document.getElementById("age").value;
+
+			var tabla = document.getElementById("tabla");
+			var row = tabla.insertRow(-1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			cell1.innerHTML = nombre;
+			cell2.innerHTML = apellido;
+			cell3.innerHTML = edad;
+
+			var ctx = document.getElementById('grafico').getContext('2d');
+			var chart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: ['Nombre', 'Apellido', 'Edad'],
+			        datasets: [{
+			            label: 'Datos personales',
+			            backgroundColor: 'rgb(255, 99, 132)',
+			            borderColor: 'rgb(255, 99, 132)',
+			            data: [nombre.length, apellido.length, edad],
+			        }]
+			    },
+
+			    options: {}
+			});
+		}
+	</script>
+
 </body>
-
-<form action="insertar.php" method="post">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
-
-  <label for="telefono">Teléfono:</label>
-  <input type="tel" id="telefono" name="telefono" required>
-
-  <button type="submit">Enviar</button>
-</form>
-
 </html>
