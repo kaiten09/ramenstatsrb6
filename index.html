@@ -33,7 +33,7 @@
 		<label for="age">Edad:</label>
 		<input type="number" id="age" name="age"><br>
 
-		<input type="submit" value="Enviar" onclick="generarTablaYgraficos();"><br>
+		<input type="submit" value="Enviar" onclick="generarTablaYgraficos(); return false;"><br>
 
 	</form>
 
@@ -48,6 +48,22 @@
 	<canvas id="grafico"></canvas>
 
 	<script>
+		// Crear el gráfico una sola vez al cargar la página
+		var ctx = document.getElementById('grafico').getContext('2d');
+		var chart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: ['Nombre', 'Apellido', 'Edad'],
+		        datasets: [{
+		            label: 'Datos personales',
+		            backgroundColor: 'rgb(255, 99, 132)',
+		            borderColor: 'rgb(255, 99, 132)',
+		            data: [0, 0, 0],
+		        }]
+		    },
+		    options: {}
+		});
+
 		function generarTablaYgraficos() {
 			var nombre = document.getElementById("fname").value;
 			var apellido = document.getElementById("lname").value;
@@ -62,13 +78,11 @@
 			cell2.innerHTML = apellido;
 			cell3.innerHTML = edad;
 
-			var ctx = document.getElementById('grafico').getContext('2d');
-			var chart = new Chart(ctx, {
-			    type: 'bar',
-			    data: {
-			        labels: ['Nombre', 'Apellido', 'Edad'],
-			        datasets: [{
-			            label: 'Datos personales',
-			            backgroundColor: 'rgb(255, 99, 132)',
-			            borderColor:
+			// Actualizar los datos del gráfico con los nuevos valores
+			chart.data.datasets[0].data = [nombre.length, apellido.length, edad];
+			chart.update();
+		}
+	</script>
 
+</body>
+</html>
